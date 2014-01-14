@@ -1,0 +1,21 @@
+{
+  "name": "cool-weather",
+  "version": "0.0.0",
+  "authors": [
+    "Mark <me@jsman.ru>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "requirejs": "~2.1.10",
+    "angular": "~1.2.8",
+    "angular-route": "~1.2.8"
+  }
+}
