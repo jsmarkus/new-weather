@@ -44,26 +44,15 @@ define(function(require) {
 
             function makeSeries(data) {
                 var tempData = [];
-                var maxTempData = [];
-                var minTempData = [];
                 var pressureData = [];
 
                 for (var i = 0; i < data.length; i++) {
                     var row = data[i];
                     var time = row.time * 1000;
-                    tempData.push({
-                        'x': time,
-                        'y': row.temperature
-                    });
                     if ('temperatureMin' in row) {
-                        minTempData.push({
-                            'x': time,
-                            'y': row.temperatureMin
-                        });
-                        maxTempData.push({
-                            'x': time,
-                            'y': row.temperatureMax
-                        });
+                        tempData.push([time, row.temperatureMin, row.temperatureMax]);
+                    } else {
+                        tempData.push([time, row.temperature]);
                     }
                     pressureData.push({
                         'x': time,
@@ -73,16 +62,9 @@ define(function(require) {
 
                 return [{
                     name: 'Temperature',
+                    type: 'arearange',
                     yAxis: 0,
                     data: tempData
-                }, {
-                    name: 'Temperature min',
-                    yAxis: 0,
-                    data: minTempData
-                }, {
-                    name: 'Temperature max',
-                    yAxis: 0,
-                    data: maxTempData
                 }, {
                     name: 'Pressure',
                     yAxis: 1,
