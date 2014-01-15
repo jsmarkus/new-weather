@@ -5,10 +5,39 @@ define(function(require) {
         function($scope, $log, Geo, Weather) {
             $scope.units = 'us';
 
-            $scope.chart = {
+            $scope.dailyChart = {
                 options: {
                     chart: {
                         type: 'line',
+                        width: 480,
+                        height: 240
+                    },
+                    xAxis: {
+                        type: 'datetime'
+                    },
+                    yAxis: [{
+                        title: {
+                            text: 'Temperature'
+                        }
+                    }, {
+                        title: {
+                            text: 'Pressure'
+                        }
+                    }]
+                },
+                series: [],
+                title: {
+                    text: ''
+                },
+
+                loading: false
+            };
+
+            $scope.hourlyChart = {
+                options: {
+                    chart: {
+                        type: 'line',
+                        width: 480,
                         height: 240
                     },
                     xAxis: {
@@ -36,20 +65,23 @@ define(function(require) {
             Geo.here()
                 .then(Weather.today)
                 .then(function(forecast) {
-                    console.log(forecast);
+                    $log.debug(forecast);
                     $scope.units = forecast.flags.units;
                     $scope.currently = forecast.currently;
-                    $scope.chart.series = makeSeries(forecast.daily.data);
+                    $scope.hourlyChart.series = makeSeries(forecast.hourly.data);
+                    $scope.dailyChart.series = makeSeries(forecast.daily.data);
                 });
 
             function makeSeries(data) {
                 var tempData = [];
                 var pressureData = [];
+                var isRange = false;
 
                 for (var i = 0; i < data.length; i++) {
                     var row = data[i];
                     var time = row.time * 1000;
                     if ('temperatureMin' in row) {
+                        isRange = true;
                         tempData.push([time, row.temperatureMin, row.temperatureMax]);
                     } else {
                         tempData.push([time, row.temperature]);
@@ -62,7 +94,7 @@ define(function(require) {
 
                 return [{
                     name: 'Temperature',
-                    type: 'arearange',
+                    type: isRange ? 'arearange':'line',
                     yAxis: 0,
                     data: tempData
                 }, {

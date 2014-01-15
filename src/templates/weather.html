@@ -1,6 +1,11 @@
 <div ng-if="currently">
-    <highchart config="chart"></highchart>
 
+<table>
+    <tr>
+        <td><highchart config="hourlyChart"></highchart></td>
+        <td><highchart config="dailyChart"></highchart></td>
+    </tr>
+</table>
     <p>{{currently.temperature | temperature:units}}</p>
 
     <table>
