@@ -5,7 +5,7 @@ define(function(require) {
         '$rootScope', '$q',
         function($rootScope, $q) {
             return {
-                getPosition: function() {
+                here: function() {
                     var def = $q.defer();
                     navigator.geolocation.getCurrentPosition(function(pos) {
                         $rootScope.$apply(function() {

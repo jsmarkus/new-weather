@@ -1,1 +1,18 @@
-test
+<div ng-if="currently">
+    <p>{{currently.temperature | temperature:units}}</p>
+
+    <table>
+        <tr>
+            <td>Feels like</td>
+            <td>{{currently.apparentTemperature | temperature:units}}</td>
+        </tr>
+        <tr>
+            <td>Pressure</td>
+            <td>{{currently.pressure | pressure:units}}</td>
+        </tr>
+        <tr>
+            <td>Visibility</td>
+            <td>{{currently.visibility | distance:units}}</td>
+        </tr>
+    </table>
+</div>
