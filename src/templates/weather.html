@@ -1,4 +1,6 @@
 <div ng-if="currently">
+    <highchart config="chart"></highchart>
+
     <p>{{currently.temperature | temperature:units}}</p>
 
     <table>
