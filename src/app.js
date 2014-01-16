@@ -2,8 +2,9 @@ define(function(require) {
     var angular = require('angular');
     var angularAMD = require('angularAMD');
     require('angular-route');
+    require('highcharts-ng');
 
-    var app = angular.module('weather', ['ngRoute']);
+    var app = angular.module('weather', ['ngRoute', 'highcharts-ng']);
 
     app.config(['$routeProvider', '$locationProvider',
         function($routeProvider, $locationProvider) {

@@ -4,7 +4,6 @@ define(function(require) {
     require('filters/Units');
     require('services/Geo');
     require('services/Weather');
-    require('ngLoad!highcharts-ng');
 
     app.register.controller('MainCtrl', ['$scope', '$log', 'Geo', 'Weather',
         function($scope, $log, Geo, Weather) {
