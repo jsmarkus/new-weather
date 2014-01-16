@@ -1,7 +1,12 @@
 define(function(require) {
-    var app = require('weather');
+    var app = require('app');
 
-    app.controller('MainCtrl', ['$scope', '$log', 'Geo', 'Weather',
+    require('filters/Units');
+    require('services/Geo');
+    require('services/Weather');
+    require('ngLoad!highcharts-ng');
+
+    app.register.controller('MainCtrl', ['$scope', '$log', 'Geo', 'Weather',
         function($scope, $log, Geo, Weather) {
             $scope.units = 'us';
 

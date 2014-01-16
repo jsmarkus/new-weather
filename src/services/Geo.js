@@ -1,7 +1,7 @@
 define(function(require) {
-    var app = require('weather');
+    var app = require('app');
 
-    app.service('Geo', [
+    app.register.service('Geo', [
         '$rootScope', '$q',
         function($rootScope, $q) {
             return {

@@ -1,7 +1,7 @@
 define(function(require) {
-    var app = require('weather');
+    var app = require('app');
 
-    app.service('Weather', [
+    app.register.service('Weather', [
         '$http',
         function($http) {
 
@@ -18,7 +18,7 @@ define(function(require) {
                         params: {
                             units: 'auto'
                         }
-                    }).then(function (response) {
+                    }).then(function(response) {
                         var res = response.data;
                         return res;
                     });
